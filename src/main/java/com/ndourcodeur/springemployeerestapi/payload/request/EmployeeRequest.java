@@ -5,20 +5,17 @@ import com.ndourcodeur.springemployeerestapi.entity.Department;
 import com.ndourcodeur.springemployeerestapi.entity.EmployeeStatus;
 import com.ndourcodeur.springemployeerestapi.entity.Gender;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.PositiveOrZero;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Data
 public class EmployeeRequest {
 
-    private String id;
+    private String _id;
 
     @NotBlank(message = "First Name should not be empty")
     private String firstName;
@@ -32,6 +29,9 @@ public class EmployeeRequest {
     @NotBlank(message = "Email Address should not be empty")
     @Email(message = "Email Address should be valid")
     private String email;
+
+    @NotBlank(message = "Job Title should not be empty")
+    private String jobTitle;
 
     @NotBlank(message = "Image Url should not be empty")
     private String imageUrl;
@@ -50,9 +50,7 @@ public class EmployeeRequest {
 
     private Address address;
 
-    @CreatedDate
     private Date createdAt;
 
-    @LastModifiedDate
     private Date updatedAt;
 }

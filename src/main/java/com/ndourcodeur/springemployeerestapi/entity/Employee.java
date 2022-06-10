@@ -22,7 +22,7 @@ import java.util.Date;
 public class Employee implements Serializable {
 
     @Id
-    private String id;
+    private String _id;
 
     @Field(value = "First_Name")
     private String firstName;
@@ -40,6 +40,9 @@ public class Employee implements Serializable {
 
     @Field(value = "Employee_Code")
     private String employeeCode;
+
+    @Field(value = "Job_title")
+    private String jobTitle;
 
     @Field(value = "Image_Url")
     private String imageUrl;

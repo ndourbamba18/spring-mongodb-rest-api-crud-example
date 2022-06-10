@@ -10,5 +10,6 @@ public enum Address {
     ZC,
     TB,
     MT,
-    LG
+    LG,
+    OTHERS
 }
