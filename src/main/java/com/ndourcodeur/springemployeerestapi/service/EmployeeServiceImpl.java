@@ -31,9 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployee(String _id) {
-        Employee existingEmployee = employeeRepository.findById(_id)
-                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+_id+" is not found"));
+    public Employee findEmployee(String employeeId) {
+        Employee existingEmployee = employeeRepository.findById(employeeId)
+                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+employeeId+" is not found"));
         log.info("Find employee inside EmployeeService.");
         return existingEmployee;
     }
@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setJobTitle(request.getJobTitle());
         employee.setImageUrl(request.getImageUrl());
         employee.setSalary(request.getSalary());
-        employee.setDob(new Date());
+        employee.setDob(request.getDob());
         employee.setGender(request.getGender());
         employee.setDepartment(request.getDepartment());
         employee.setStatus(request.getStatus());
@@ -62,11 +62,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    @Transactional
+    //@Transactional
     @Override
-    public Employee updateEmployee(String _id, EmployeeRequest request) {
-        Employee existingEmployee = employeeRepository.findById(_id)
-                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+_id+" is not found"));
+    public Employee updateEmployee(String employeeId, EmployeeRequest request) {
+        Employee existingEmployee = employeeRepository.findById(employeeId)
+                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+employeeId+" is not found"));
         existingEmployee.set_id(request.get_id());
         existingEmployee.setFirstName(request.getFirstName());
         existingEmployee.setLastName(request.getLastName());
@@ -76,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         existingEmployee.setJobTitle(request.getJobTitle());
         existingEmployee.setImageUrl(request.getImageUrl());
         existingEmployee.setSalary(request.getSalary());
-        existingEmployee.setDob(new Date());
+        existingEmployee.setDob(request.getDob());
         existingEmployee.setGender(request.getGender());
         existingEmployee.setDepartment(request.getDepartment());
         existingEmployee.setStatus(request.getStatus());
@@ -88,9 +88,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(String _id) {
-        Employee employee = employeeRepository.findById(_id)
-                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+_id+" is not found"));
+    public void deleteEmployee(String employeeId) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+employeeId+" is not found"));
         log.info("Delete employee by id inside EmployeeService.");
         employeeRepository.delete(employee);
     }

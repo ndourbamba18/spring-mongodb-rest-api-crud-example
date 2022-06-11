@@ -11,10 +11,10 @@ import java.util.Optional;
 public interface EmployeeService {
 
     public List<Employee> findAllEmployees();
-    public Employee findEmployee(String _id);
+    public Employee findEmployee(String employeeId);
     public Employee addEmployee(EmployeeRequest request);
-    public Employee updateEmployee(String _id, EmployeeRequest request);
-    public void deleteEmployee(String _id);
+    public Employee updateEmployee(String employeeId, EmployeeRequest request);
+    public void deleteEmployee(String employeeId);
     public Optional<Employee> findByEmail(String email);
     public Optional<Employee> findByPhone(String phone);
     public boolean existsByEmail(String email);

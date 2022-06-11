@@ -24,7 +24,7 @@ public class EmployeeController {
 
     /**
      * @NdourCodeur
-     * URL ====> http://localhost:8080/api/v1/employees/findAll
+     * URL ===>  http://localhost:8080/api/v1/employees/findAll
      * Method to fetch all employees from db.
      * @return
      */
@@ -41,13 +41,13 @@ public class EmployeeController {
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/detail/{id}
      * Method to fetch employee by id.
-     * @param _id
+     * @param employeeId
      * @return
      */
-    @GetMapping(path = "/detail/{_id}")
-    public ResponseEntity<Employee> findEmployeeById(@PathVariable String _id){
-        Employee employee = employeeService.findEmployee(_id);
-        log.info("Getting Employee with ID : {}.", _id);
+    @GetMapping(path = "/detail/{employeeId}")
+    public ResponseEntity<Employee> findEmployeeById(@PathVariable(value = "employeeId") String employeeId){
+        Employee employee = employeeService.findEmployee(employeeId);
+        log.info("Getting Employee with ID : {}.", employeeId);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
@@ -73,17 +73,18 @@ public class EmployeeController {
      * URL ====> http://localhost:8080/api/v1/employees/update/{id}
      * Method to update employee by id.
      * @param request
-     * @param _id
+     * @param employeeId
      * @return
      */
-    @PutMapping(path = "/update/{_id}")
-    public ResponseEntity<Employee> updateEmployeeById(@PathVariable(value = "_id") String _id, @Valid @RequestBody EmployeeRequest request){
-        if (employeeService.existsByEmail(request.getEmail()) && employeeService.findByEmail(request.getEmail()).get().get_id() != _id)
+    @PutMapping(path = "/update/{employeeId}")
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable(value = "employeeId") String employeeId, @Valid @RequestBody EmployeeRequest request){
+        if (employeeService.existsByEmail(request.getEmail()) && employeeService.findByEmail(request.getEmail()).get().get_id() != employeeId)
             return new ResponseEntity(new MessageResponse("Error: Email address already exist."), HttpStatus.BAD_REQUEST);
-        /*if (employeeService.existsByPhone(request.getPhone()) && employeeService.findByPhone(request.getPhone()).get().getId() != idEmployee)
-            return new ResponseEntity(new MessageResponse("Error: Phone number already exist."), HttpStatus.BAD_REQUEST);*/
-        Employee employee = employeeService.updateEmployee(_id, request);
-        log.info("Updating Employee with ID : {}", _id);
+        if (employeeService.existsByPhone(request.getPhone()) && employeeService.findByPhone(request.getPhone()).get().get_id() != employeeId)
+            return new ResponseEntity(new MessageResponse("Error: Phone number already exist."), HttpStatus.BAD_REQUEST);
+        Employee employee = employeeService.updateEmployee(employeeId, request);
+        employee.set_id(employeeId);
+        log.info("Updating Employee with ID : {}.", employee);
         return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
@@ -91,14 +92,14 @@ public class EmployeeController {
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/delete/{id}
      * Method to delete employee by id.
-     * @param _id
+     * @param employeeId
      * @return
      */
-    @DeleteMapping(path = "/delete/{_id}")
-    public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "_id") String _id){
-        employeeService.deleteEmployee(_id);
-        log.info("Deleting Employee with ID : {}.", _id);
-        return new ResponseEntity<>(new MessageResponse("Employee with ID:"+_id+" is deleted successfully."), HttpStatus.OK);
+    @DeleteMapping(path = "/delete/{employeeId}")
+    public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "employeeId") String employeeId){
+        employeeService.deleteEmployee(employeeId);
+        log.info("Deleting Employee with ID : {}.", employeeId);
+        return new ResponseEntity<>(new MessageResponse("Employee with ID:"+employeeId+" is deleted successfully."), HttpStatus.OK);
     }
 
 
@@ -136,12 +137,12 @@ public class EmployeeController {
 
     /**
      * @NdourCodeur
-     * URL ====> http://localhost:8080/api/v1/employees/by-gender/{status}
+     * URL ====> http://localhost:8080/api/v1/employees/by-employeeStatus/{status}
      * Method to fetch all employees by status.
      * @param status
      * @return
      */
-    @GetMapping(path = "/by-status/{status}")
+    @GetMapping(path = "/by-employeeStatus/{status}")
     public ResponseEntity<List<Employee>> fetchAllEmployeesByStatus(@PathVariable EmployeeStatus status){
         List<Employee> employees = employeeService.fetchEmployeesByStatus(status);
         if (employees.isEmpty())
