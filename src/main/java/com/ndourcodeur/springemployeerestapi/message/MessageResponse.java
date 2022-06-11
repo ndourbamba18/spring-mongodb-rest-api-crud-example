@@ -1,4 +1,4 @@
-package com.ndourcodeur.springemployeerestapi.payload.response;
+package com.ndourcodeur.springemployeerestapi.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

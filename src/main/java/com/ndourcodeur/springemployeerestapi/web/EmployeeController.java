@@ -1,8 +1,7 @@
 package com.ndourcodeur.springemployeerestapi.web;
 
 import com.ndourcodeur.springemployeerestapi.entity.*;
-import com.ndourcodeur.springemployeerestapi.payload.request.EmployeeRequest;
-import com.ndourcodeur.springemployeerestapi.payload.response.MessageResponse;
+import com.ndourcodeur.springemployeerestapi.message.MessageResponse;
 import com.ndourcodeur.springemployeerestapi.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,13 +40,13 @@ public class EmployeeController {
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/detail/{id}
      * Method to fetch employee by id.
-     * @param _id
+     * @param employeeId
      * @return
      */
-    @GetMapping(path = "/detail/{_id}")
-    public ResponseEntity<Employee> findEmployeeById(@PathVariable String _id){
-        Employee employee = employeeService.findEmployee(_id);
-        log.info("Getting Employee with ID : {}.", _id);
+    @GetMapping(path = "/detail/{employeeId}")
+    public ResponseEntity<Employee> findEmployeeById(@PathVariable(value = "employeeId") String employeeId){
+        Employee employee = employeeService.findEmployee(employeeId);
+        log.info("Getting Employee with ID : {}.", employee);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
@@ -55,50 +54,66 @@ public class EmployeeController {
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/addEmployee
      * Method to save new employee.
-     * @param request
+     * @param employee
      * @return
      */
     @PostMapping(path = "/addEmployee")
-    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody EmployeeRequest request){
-        if (employeeService.existsByEmail(request.getEmail()))
+    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody Employee employee){
+        if (employeeService.existsByEmail(employee.getEmail()))
             return new ResponseEntity(new MessageResponse("Error: Email Address already exist."), HttpStatus.BAD_REQUEST);
-        if (employeeService.existsByPhone(request.getPhone()))
+        if (employeeService.existsByPhone(employee.getPhone()))
             return new ResponseEntity(new MessageResponse("Error: Phone Number already exist."), HttpStatus.BAD_REQUEST);
-        log.info("Saving Employee : {}.", request);
-        return new ResponseEntity<>(employeeService.addEmployee(request), HttpStatus.CREATED);
+        Employee addEmployee = employeeService.addEmployee(employee);
+        log.info("Saving Employee : {}.", employee);
+        return new ResponseEntity<>(addEmployee, HttpStatus.CREATED);
     }
 
     /**
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/update/{id}
      * Method to update employee by id.
-     * @param request
-     * @param _id
+     * @param employee
+     * @param employeeId
      * @return
      */
-    @PutMapping(path = "/update/{_id}")
-    public ResponseEntity<Employee> updateEmployeeById(@PathVariable(value = "_id") String _id, @Valid @RequestBody EmployeeRequest request){
-        if (employeeService.existsByEmail(request.getEmail()) && employeeService.findByEmail(request.getEmail()).get().get_id() != _id)
+    @PatchMapping(path = "/update/{employeeId}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "employeeId") String employeeId, @Valid @RequestBody Employee employee){
+        if (this.employeeService.existsByEmail(employee.getEmail()) && this.employeeService.findByEmail(employee.getEmail()).get().get_id() != employeeId)
             return new ResponseEntity(new MessageResponse("Error: Email address already exist."), HttpStatus.BAD_REQUEST);
-        /*if (employeeService.existsByPhone(request.getPhone()) && employeeService.findByPhone(request.getPhone()).get().getId() != idEmployee)
-            return new ResponseEntity(new MessageResponse("Error: Phone number already exist."), HttpStatus.BAD_REQUEST);*/
-        Employee employee = employeeService.updateEmployee(_id, request);
-        log.info("Updating Employee with ID : {}", _id);
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
+        if (this.employeeService.existsByPhone(employee.getPhone()) && this.employeeService.findByPhone(employee.getPhone()).get().get_id() != employeeId)
+            return new ResponseEntity(new MessageResponse("Error: Phone number already exist."), HttpStatus.BAD_REQUEST);
+        log.info("Updating Employee with ID : {}.", employeeId);
+        Employee updateEmployee = this.employeeService.updateEmployee(employeeId, employee);
+        return new ResponseEntity<>(updateEmployee, HttpStatus.CREATED);
+    }
+
+    /**
+     * @NdourCodeur
+     * URL ====> http://localhost:8080/api/v1/employees/update/{id}
+     * Method to update employee by id.
+     * @param employee
+     * @param employeeId
+     * @return
+     */
+    @PutMapping(path = "/update/{employeeId}")
+    public ResponseEntity<Employee> updateEmployeeById(@PathVariable(value = "employeeId") String employeeId, @Valid @RequestBody Employee employee){
+        log.info("Updating Employee with ID : {}.", employeeId);
+        Employee updateEmployee = this.employeeService.updateEmployee(employeeId, employee);
+        return new ResponseEntity<>(updateEmployee, HttpStatus.CREATED);
     }
 
     /**
      * @NdourCodeur
      * URL ====> http://localhost:8080/api/v1/employees/delete/{id}
      * Method to delete employee by id.
-     * @param _id
+     * @param employeeId
      * @return
      */
-    @DeleteMapping(path = "/delete/{_id}")
-    public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "_id") String _id){
-        employeeService.deleteEmployee(_id);
-        log.info("Deleting Employee with ID : {}.", _id);
-        return new ResponseEntity<>(new MessageResponse("Employee with ID:"+_id+" is deleted successfully."), HttpStatus.OK);
+    @DeleteMapping(path = "/delete/{employeeId}")
+    public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "employeeId") String employeeId){
+        employeeService.deleteEmployee(employeeId);
+        log.info("Deleting Employee with ID : {}.", employeeId);
+        return new ResponseEntity<>(new MessageResponse("Employee with ID:"+employeeId+" is deleted successfully."), HttpStatus.OK);
     }
 
 
