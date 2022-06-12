@@ -78,8 +78,8 @@ In order to complete this tutorial, you should have knowledge of beginner or int
 - Postman
 
 # Step 1.Spring boot Project Setup
-We start working by creating a new project using spring initializr. We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB & Spring Data MongoDB.
-![Capture](C:\Users\ndour\Desktop\spring-boot-mongodb.PNG)
+We start working by creating a new project using spring initializr. We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB & Spring Data MongoDB.  
+![Capture](file:///C:/Users/ndour/Documents/spring-boot-mongodb.PNG)
 
 ## All Dependencies
 
