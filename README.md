@@ -50,14 +50,14 @@ We will make use of the Spring Initializr tool for quickly setting up the projec
 Spring Data MongoDB.
 
 ```
-– Spring Data MongoDB:
+– Spring Data MongoDB
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-data-mongodb</artifactId>
 </dependency>
 ```
-– Spring Web:
+– Spring Web
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
