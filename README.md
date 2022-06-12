@@ -92,7 +92,17 @@ Spring Data MongoDB.
 Open `src/main/resources/application.properties`
 - For application.properties:
 ```
-
+# MongoDB
+spring.data.mongodb.host=[host]
+spring.data.mongodb.port=[port]
+spring.data.mongodb.username=[username]
+spring.data.mongodb.password=[password]
+spring.data.mongodb.database=[database_name]
+spring.application.name=[Your Application Name]
+spring.banner.charset=[UTF-8]
+# logging
+logging.level.org.springframework.data=debug
+logging.level.=error
 ```
 - For application.yml
 ```
@@ -108,6 +118,11 @@ spring:
 
   banner:
     charset: UTF-8
+ logging:
+   level: error 
+      org:
+         springframework:
+            data: debug
 ```
 
 ## Download All Packages :
