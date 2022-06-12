@@ -46,6 +46,37 @@
 
 > [Spring Boot + MySQL Example Customer App](https://github.com/ndourbamba18/customer-app)
 
+#### Building a REST API using Spring Boot & MongoDB
+In this tutorial we are going to learn how to build a simple crud rest api backend application using Spring Boot and MongoDB.
+
+### What is MongoDB?
+
+MongoDB is a document-oriented NoSQL database that stores JSON-like documents with dynamic schemas. It is commonly used for
+high-volume data storage.
+Few advantages of a NoSQL database over a SQL database are listed below;
+Schemaless
+No complex joins.
+Ease of scale-out − NoSQL databases are easy to scale.
+Conversion/mapping of application objects to database objects not needed.
+Uses internal memory for storing the (windowed) working set, enabling faster access to data.
+
+### What is Spring boot?
+
+Spring Boot is an open-source popular Java-based framework for building web and enterprise applications maintained by a company
+called Pivotal. Spring boot reduces lots of development time and increases productivity. It has many advantages & with its help, it is
+easier to avoid writing lots of boilerplate Code, Annotations, and XML Configuration. It also has a built-in configuration for Spring
+JDBC, Spring ORM, Spring Data, Spring Security, etc.
+
+### Prerequisites
+
+#### Tools Used in this Tutorial
+Java 11
+Spring Boot 2.6.6
+Maven
+Lombok
+MongoDB 5.0
+Postman
+
 ## All Dependencies
 We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB &
 Spring Data MongoDB.
@@ -125,19 +156,26 @@ spring:
             data: debug
 ```
 
-## Download All Packages :
+## Download All Packages
 ```
 mvn package
 ```
+
+## Running the Project and Testing with Postman
+Now let’s test our API calls using postman. Right-click on the project and select Run as a Spring boot App.
+
 ## Run Spring Boot application
 ```
 mvn spring-boot:run
 ```
 
-## An others Branches
+### Postman
+Testing With Postman
+
+## Others Branches
 
 > [master](https://github.com/ndourbamba18/ecommerce-spring-api-rest/tree/commandLineRunner)
 
-> [docker-compose](https://github.com/ndourbamba18/ecommerce-spring-api-rest/tree/docker-compose)
+> [docker-compose-demo](https://github.com/ndourbamba18/ecommerce-spring-api-rest/tree/docker-compose)
 
-
+> [Swagger-demo](https://github.com/ndourbamba18/ecommerce-spring-api-rest/tree/commandLineRunner)
