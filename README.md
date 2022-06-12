@@ -1,6 +1,6 @@
 # Building a Rest Api using Spring Boot and MongoDB
 
-## E-Commerce Backend Application using Spring Boot & MySQL and Spring Data JPA & JWT
+### E-Commerce Backend Application using Spring Boot & MySQL and Spring Data JPA & JWT
 
 > [E-Commerce Rest Api Backend App](https://github.com/ndourbamba18/ecommerce-spring-api-rest)
 
@@ -48,12 +48,15 @@ More Practice:
 ## Dependency
 We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB &
 Spring Data MongoDB.
-– MongoDB:
+
+```
+– Spring Data MongoDB:
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-data-mongodb</artifactId>
 </dependency>
+```
 ```
 – Spring Web:
 ```xml
