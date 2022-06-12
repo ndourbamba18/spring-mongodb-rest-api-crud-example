@@ -38,26 +38,26 @@
 
 > [Spring Boot + MySQL + Rest Template](https://github.com/ndourbamba18/spring-boot-rest-template)
 
-More Practice:
+### More Practice:
+
 > [Spring Boot + MySQL Example Microservice](https://github.com/ndourbamba18/SpringBoot-Microservices)
 
 >  [Django + SQlite3 Example Login and Registration User](https://github.com/ndourbamba18/login-registration-app)
 
 > [Spring Boot + MySQL Example Customer App](https://github.com/ndourbamba18/customer-app)
 
-## Dependency
+## All Dependencies
 We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB &
 Spring Data MongoDB.
 
-```
-– Spring Data MongoDB
+- Spring Data MongoDB
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-data-mongodb</artifactId>
 </dependency>
 ```
-– Spring Web
+- Spring Web
 ```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
