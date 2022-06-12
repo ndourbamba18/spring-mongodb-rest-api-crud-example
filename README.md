@@ -47,7 +47,7 @@
 > [Spring Boot + MySQL Example Customer App](https://github.com/ndourbamba18/customer-app)
 
 #### Building a REST API using Spring Boot & MongoDB
-![Capture](https://user-images.githubusercontent.com/82464964/146592135-21809836-e4d3-4d3f-b558-a2bacbe97108.PNG)
+![Capture](https://miro.medium.com/max/1400/1*q5l_fHMobLFDNKy2A2Hjqw.png)
 In this tutorial we are going to learn how to build a simple crud rest api backend application using Spring Boot and MongoDB.
 
 ### What is MongoDB?
