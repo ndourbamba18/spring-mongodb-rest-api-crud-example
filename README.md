@@ -46,12 +46,11 @@
 
 > [Spring Boot + MySQL Example Customer App](https://github.com/ndourbamba18/customer-app)
 
-#### Building a REST API using Spring Boot & MongoDB
+# Building a REST API using Spring Boot & MongoDB
 ![Capture](https://miro.medium.com/max/1400/1*q5l_fHMobLFDNKy2A2Hjqw.png)
 In this tutorial we are going to learn how to build a simple crud rest api backend application using Spring Boot and MongoDB.
 
 ### What is MongoDB?
-
 MongoDB is a document-oriented NoSQL database that stores JSON-like documents with dynamic schemas. It is commonly used for
 high-volume data storage.
 Few advantages of a NoSQL database over a SQL database are listed below;
@@ -62,21 +61,21 @@ Conversion/mapping of application objects to database objects not needed.
 Uses internal memory for storing the (windowed) working set, enabling faster access to data.
 
 ### What is Spring boot?
-
 Spring Boot is an open-source popular Java-based framework for building web and enterprise applications maintained by a company
 called Pivotal. Spring boot reduces lots of development time and increases productivity. It has many advantages & with its help, it is
 easier to avoid writing lots of boilerplate Code, Annotations, and XML Configuration. It also has a built-in configuration for Spring
 JDBC, Spring ORM, Spring Data, Spring Security, etc.
 
 ### Prerequisites
+In order to complete this tutorial, you should have knowledge of beginner or intermediate Java 8 programming skills, some familiarity with Spring Boot, and also you should have a general familiarity with the Windows command prompt.
 
 #### Tools Used in this Tutorial
-Java 11
-Spring Boot 2.6.6
-Maven
-Lombok
-MongoDB 5.0
-Postman
+- Java 11
+- Spring Boot 2.6.6
+- Maven
+- Lombok
+- MongoDB 5.0
+- Postman
 
 ## All Dependencies
 We will make use of the Spring Initializr tool for quickly setting up the project. Don’t forget to add the dependencies Spring WEB &
