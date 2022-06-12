@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -22,8 +23,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllEmployees() {
-        List<Employee> employees = this.employeeRepository.findAll();
-        return employees;
+        List<Employee> list = this.employeeRepository.findAll();
+        list = list.stream().sorted(Comparator.comparing(Employee::get_id).reversed())
+                .collect(Collectors.toList());
+        return list;
     }
 
     @Override
@@ -52,6 +55,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee updateEmployee = optionalEmployee.get();
         log.info("Update employee by id inside EmployeeService.");
         return employeeRepository.save(updateEmployee);
+    }
+
+    @Override
+    public Long employeeAccount() {
+        return this.employeeRepository.count();
     }
 
     @Transactional

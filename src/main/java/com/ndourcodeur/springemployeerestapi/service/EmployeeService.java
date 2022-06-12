@@ -14,6 +14,7 @@ public interface EmployeeService {
     public Employee addEmployee(Employee employee);
     public Employee updateEmployee(String employeeId, Employee employee);
     public Employee updateEmployeeById(String employeeId, Employee employee);
+    public Long employeeAccount();
     public void deleteEmployee(String employeeId);
     public Optional<Employee> findByEmail(String email);
     public Optional<Employee> findByPhone(String phone);

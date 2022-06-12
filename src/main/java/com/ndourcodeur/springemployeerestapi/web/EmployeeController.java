@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,7 +19,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class EmployeeController {
-    
+
+    @Resource
     private final EmployeeService employeeService;
 
     /**
@@ -29,11 +31,12 @@ public class EmployeeController {
      */
     @GetMapping(path = "/findAll")
     public ResponseEntity<List<Employee>> findAllEmployees(){
-        List<Employee> employees = employeeService.findAllEmployees();
+        List<Employee> employees = this.employeeService.findAllEmployees();
         if (employees.isEmpty())
             return new ResponseEntity(new MessageResponse("No Content."), HttpStatus.BAD_REQUEST);
         log.info("Getting all employees.");
         return new ResponseEntity<>(employees, HttpStatus.OK);
+
     }
 
     /**
@@ -98,7 +101,7 @@ public class EmployeeController {
     @PutMapping(path = "/update/{employeeId}")
     public ResponseEntity<Employee> updateEmployeeById(@PathVariable(value = "employeeId") String employeeId, @Valid @RequestBody Employee employee){
         log.info("Updating Employee with ID : {}.", employeeId);
-        Employee updateEmployee = this.employeeService.updateEmployee(employeeId, employee);
+        Employee updateEmployee = this.employeeService.updateEmployeeById(employeeId, employee);
         return new ResponseEntity<>(updateEmployee, HttpStatus.CREATED);
     }
 
@@ -116,6 +119,17 @@ public class EmployeeController {
         return new ResponseEntity<>(new MessageResponse("Employee with ID:"+employeeId+" is deleted successfully."), HttpStatus.OK);
     }
 
+    /**
+     * @NdourCodeur
+     * URL ====> http://localhost:8080/api/v1/employees/employee-account
+     * Method to count the number of employees that exist in the database.
+     * @return
+     */
+    @GetMapping(path = "/employee-account")
+    public ResponseEntity<?> getNumberOfEmployees(){
+        long totalEmployees = this.employeeService.employeeAccount();
+        return new ResponseEntity<>(totalEmployees, HttpStatus.OK);
+    }
 
     /**
      * @NdourCodeur
