@@ -57,7 +57,6 @@ Spring Data MongoDB.
   <artifactId>spring-boot-starter-data-mongodb</artifactId>
 </dependency>
 ```
-```
 – Spring Web:
 ```xml
 <dependency>
@@ -89,7 +88,7 @@ Spring Data MongoDB.
   <artifactId>spring-boot-starter-validation</artifactId>
 </dependency>
  ```  
-### Configure Spring Datasource, JPA, App properties
+### Configure Spring Datasource, MongoDB, App properties
 Open `src/main/resources/application.properties`
 - For application.properties:
 ```
