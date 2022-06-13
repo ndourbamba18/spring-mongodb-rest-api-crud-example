@@ -10,10 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -25,9 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllEmployees() {
-        List<Employee> employees = employeeRepository.findAll();
+        List<Employee> list = employeeRepository.findAll();
+        list = list.stream().sorted(Comparator.comparing(Employee::get_id).reversed())
+                .collect(Collectors.toList());
         log.info("Find all employees inside EmployeeService.");
-        return employees;
+        return list;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setJobTitle(request.getJobTitle());
         employee.setImageUrl(request.getImageUrl());
         employee.setSalary(request.getSalary());
-        employee.setDob(request.getDob());
+        employee.setDob(new Date());
         employee.setGender(request.getGender());
         employee.setDepartment(request.getDepartment());
         employee.setStatus(request.getStatus());
@@ -62,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    //@Transactional
+    @Transactional
     @Override
     public Employee updateEmployee(String employeeId, EmployeeRequest request) {
         Employee existingEmployee = employeeRepository.findById(employeeId)
@@ -93,6 +93,12 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .orElseThrow( () -> new ResourceNotFoundException("Employee with ID:"+employeeId+" is not found"));
         log.info("Delete employee by id inside EmployeeService.");
         employeeRepository.delete(employee);
+    }
+
+    @Override
+    public long employeeAccount() {
+        log.info("employeeAccount inside EmployeeService.");
+        return this.employeeRepository.count();
     }
 
     @Override

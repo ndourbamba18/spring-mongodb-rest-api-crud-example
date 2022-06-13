@@ -4,9 +4,11 @@ spring:
         authentication-database: admin
         port: 27017
         host: localhost
-        database: EmployeeBackend
+        database: EmployeeDB
   application:
      name: employee-rest-api
 
   banner:
     charset: UTF-8
+
+

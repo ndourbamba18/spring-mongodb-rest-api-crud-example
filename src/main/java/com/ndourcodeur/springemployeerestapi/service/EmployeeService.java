@@ -15,6 +15,7 @@ public interface EmployeeService {
     public Employee addEmployee(EmployeeRequest request);
     public Employee updateEmployee(String employeeId, EmployeeRequest request);
     public void deleteEmployee(String employeeId);
+    public long employeeAccount();
     public Optional<Employee> findByEmail(String email);
     public Optional<Employee> findByPhone(String phone);
     public boolean existsByEmail(String email);
@@ -24,4 +25,5 @@ public interface EmployeeService {
     public List<Employee> fetchEmployeesByGender(Gender gender);
     public List<Employee> fetchEmployeesByStatus(EmployeeStatus status);
     public List<Employee> fetchEmployeesByAddress(Address address);
+
 }
