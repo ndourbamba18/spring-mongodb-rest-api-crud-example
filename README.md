@@ -204,7 +204,7 @@ Testing With Postman
 ![all-data](https://user-images.githubusercontent.com/97687670/173398034-9bf9c736-aa16-4446-b1e0-acc485183765.PNG)
 
 
-## Others Branches
+## Other branches
 
 > [main](!#)
 
